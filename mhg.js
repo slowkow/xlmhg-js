@@ -83,14 +83,14 @@ var MHG = function(){
         var k = 0;
         var threshold = 0;
         
-        if (K == 0 || K == N || K < X) {
+        if (K === 0 || K === N || K < X) {
             scores.value[0] = 1.0;
             return threshold;
         }
         
         for (var n = 0; n < L; n++) {
             // We see a zero in the presence vector.
-            if (x[n] == 0) {
+            if (x[n] === 0) {
                 // Compute P(k | N,K,n+1) from P(k | N,K,n)
                 p = p * ( (n + 1) * (N - K - n + k) ) /
                     ( (N - n) * (n - k + 1) );
@@ -107,7 +107,7 @@ var MHG = function(){
             scores.value[n] = pval;
             
             // Update the best score and threshold we have seen.
-            if (x[n] != 0 && k >= X) {
+            if (x[n] !== 0 && k >= X) {
                 if (pval < mHG && !is_equal(pval, mHG, tol)) {
                     mHG = pval;
                     threshold = n;
@@ -116,7 +116,7 @@ var MHG = function(){
         }
         
         // We did not see enough ones in the first L elements of x.
-        if (threshold == 0) {
+        if (threshold === 0) {
             scores.value[0] = 1.0;
         }
         
@@ -154,9 +154,9 @@ var MHG = function(){
     function get_mHG_pvalue(N, K, L, X, mHG, tol) {
         if (mHG > 1.0 || is_equal(mHG, 1.0, tol)) {
             return 1.0;
-        } else if (mHG == 0) {
+        } else if (mHG === 0) {
             return 0;
-        } else if (K == 0 || K >= N || K < X) {
+        } else if (K === 0 || K >= N || K < X) {
             return 0;
         } else if (L > N) {
             return 0;
@@ -327,7 +327,7 @@ var MHG = function(){
             'pvalue': 1.0
         };
 
-        if (K == 0 || K == N) {
+        if (K === 0 || K === N) {
             return retval;
         }
         
