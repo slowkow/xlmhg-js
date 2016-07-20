@@ -15,7 +15,6 @@ v[6] = 1;
 var app = require("mhg-js");
 var instance = new app({
     el: rootDiv,
-    text: 'mhg biojs',
     v:v, N:N, K:K, L:L, X:X,
     plot:1
 });
