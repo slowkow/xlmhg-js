@@ -1,11 +1,54 @@
 {
-  "name": "mhg.js",
-  "version": "0.0.1",
-  "description": "A rank based non-parametric enrichment test for a binary list.",
-  "main": "mhg.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "mhg-js",
+  "description": "Non-parametric rank enrichment test for binary data",
+  "version": "0.1.0",
+  "homepage": "https://github.com/JEFworks/mhg-js",
+  "author": {
+    "name": "Kamil Slowikowski and Jean Fan",
+    "email": "kslowikowski@fas.harvard.edu, jeanfan@fas.harvard.edu"
   },
-  "author": "Kamil Slowikowski",
-  "license": "GPL"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JEFworks/mhg-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JEFworks/mhg-js/issues"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo 'Error: no test specified' && exit 1",
+    "build": "mkdirp build && browserify -r ./:mhg-js -o build/js.js",
+    "build-browser": "npm run build",
+    "prepublish": "npm run build",
+    "watch": "watchify -r ./:mhg-js -v -o build/js.js",
+    "w": "prunner \"npm run sniper\" \"npm run watch\"",
+    "sniper": "sniper ."
+  },
+  "dependencies": {
+    "d3": "^4.1.1"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.0",
+    "browserify": "6.x",
+    "sniper": "0.x",
+    "watchify": "^1.0.6",
+    "prunner": "1.x"
+  },
+  "sniper": {
+    "js": [
+      "/build/js.js"
+    ],
+      "css": ["/css/main.css"],
+    "snippets": [
+      "examples"
+    ],
+    "first": "simple"
+  },
+  "keywords": [
+    "enrichment",
+    "hypergeometric",
+    "test",
+    "biojs"
+  ]
 }
